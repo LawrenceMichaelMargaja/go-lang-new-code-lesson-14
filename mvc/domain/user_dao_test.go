@@ -1,16 +1,42 @@
 package domain
 
 import (
+	"fmt"
+	"github.com/dembygenesis/go-rest-industry-standard/mvc/utils"
 	"net/http"
 	"testing"
 	"github.com/stretchr/testify/assert"
 )
 
+
+
+type userDaoMock struct {
+
+}
+
+func (u *userDaoMock) GetUser(userId int64) (*User, *utils.ApplicationError) {
+	fmt.Println("hello func (u *userDaoMock) GetUser(userId int64) (*User, *utils.ApplicationError) {")
+	return &User{
+			Id:        0,
+			FirstName: "",
+			LastName:  "",
+			Email:     "",
+		}, &utils.ApplicationError{
+		Message:    "",
+		StatusCode: 0,
+		Code:       "",
+	}
+}
+
+func init() {
+	UserDao = &userDaoMock{}
+}
+
 func TestGetUserNoUserFound(t *testing.T) {
 	// Initialization:
 
 	// Execution:
-	user, err := GetUser(0)
+	user, err := UserDao.GetUser(0)
 
 	// Validation:
 
@@ -31,7 +57,7 @@ func TestGetUserNoUserFound(t *testing.T) {
 }
 
 func TestGetUserNoError(t *testing.T) {
-	user, err := GetUser(123)
+	user, err := UserDao.GetUser(123)
 
 	assert.Nil(t, err)
 	assert.NotNil(t, user)
