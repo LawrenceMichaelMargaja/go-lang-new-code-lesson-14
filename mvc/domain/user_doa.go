@@ -17,6 +17,7 @@ var (
 )
 
 func init() {
+	// Whatever struct "UserDao" instantiates must implement the methods in the "usersDaoInterface"
 	UserDao = &userDao{}
 }
 
