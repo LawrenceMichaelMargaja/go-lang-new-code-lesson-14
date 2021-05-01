@@ -5,6 +5,18 @@ import (
 	"github.com/dembygenesis/go-rest-industry-standard/mvc/utils"
 )
 
-func GetUser(userId int64) (*domain.User, *utils.ApplicationError) {
-	return domain.GetUser(userId)
+type userService struct {
+
+}
+
+var (
+	// Create a public variable to expose the methods
+	// This is how we define different artifacts
+	// Terminology review: Are artifacts merely public variables containing related methods
+	// for a service?
+	UserService userService
+)
+
+func (u *userService) GetUser(userId int64) (*domain.User, *utils.ApplicationError) {
+	return domain.UserDao.GetUser(userId)
 }
