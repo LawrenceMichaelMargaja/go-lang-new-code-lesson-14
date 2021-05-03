@@ -1,21 +1,17 @@
 package domain
 
 import (
-	"fmt"
 	"github.com/dembygenesis/go-rest-industry-standard/mvc/utils"
+	"github.com/stretchr/testify/assert"
 	"net/http"
 	"testing"
-	"github.com/stretchr/testify/assert"
 )
-
-
 
 type userDaoMock struct {
 
 }
 
 func (u *userDaoMock) GetUser(userId int64) (*User, *utils.ApplicationError) {
-	fmt.Println("hello func (u *userDaoMock) GetUser(userId int64) (*User, *utils.ApplicationError) {")
 	return &User{
 			Id:        0,
 			FirstName: "",
