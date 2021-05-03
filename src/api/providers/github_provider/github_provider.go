@@ -3,13 +3,11 @@ package github_provider
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/dembygenesis/go-rest-industry-standard/src/api/clients/restclient"
 	"github.com/dembygenesis/go-rest-industry-standard/src/api/domain/github"
-	"github.com/dembygenesis/go-rest-industry-standard/src/api/restclient"
-	"github.com/joho/godotenv"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 )
 
 
@@ -22,14 +20,15 @@ const (
 )
 
 func init() {
-	err := godotenv.Load()
+	/*err := godotenv.Load()
 
 	if err != nil {
 		log.Fatal(err)
 		log.Fatal("Error loading .env file")
-	}
+	}*/
 
-	headerAuthorization = os.Getenv("TOKEN_GITHUB")
+	// headerAuthorization = os.Getenv("TOKEN_GITHUB")
+	headerAuthorization = "Authorization"
 }
 
 
@@ -45,6 +44,9 @@ func CreateRepo(accessToken string, request github.CreateRepoRequest) (
 	headers.Set(headerAuthorization, getAuthorizationHeader("abc123"))
 
 	response, err := restclient.Post(urlCreateRepo, request, headers)
+	fmt.Println("Github response", response)
+	fmt.Println("Github err", err)
+
 	if err != nil {
 		log.Printf("error when trying to create a new repo in github: %s", err.Error())
 		return nil, &github.GithubErrorResponse{
