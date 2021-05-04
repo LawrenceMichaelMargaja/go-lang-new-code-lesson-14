@@ -119,7 +119,7 @@ func TestCreateRepoInvalidErrorInterface(t *testing.T) {
 	assert.Nil(t, response)
 	assert.NotNil(t, err)
 	assert.EqualValues(t, http.StatusInternalServerError, err.StatusCode)
-	assert.EqualValues(t, "invalid json response", err.Message)
+	assert.EqualValues(t, "invalid json response body", err.Message)
 }
 
 func TestCreateRepoUnauthorized(t *testing.T) {

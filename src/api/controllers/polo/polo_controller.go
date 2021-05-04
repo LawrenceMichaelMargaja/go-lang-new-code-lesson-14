@@ -1,11 +1,14 @@
 package polo
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 const (
 	polo = "polo"
 )
 
-func Polo(c *gin.Context) {
-	c.String(200, polo)
+func Marco(c *gin.Context) {
+	c.String(http.StatusOK, polo)
 }
