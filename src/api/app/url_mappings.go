@@ -7,5 +7,9 @@ import (
 
 func mapUrls() {
 	router.GET("/marco", polo.Marco)
-	router.POST("/repositories", repositories.CreateRepo)
+	// Old
+	// router.POST("/repositories", repositories.CreateRepo)
+
+	// New - supports multi-create
+	router.POST("/repositories", repositories.CreateRepos)
 }
