@@ -24,3 +24,7 @@ func TestGetMockedContext(t *testing.T) {
 	assert.EqualValues(t, "true", c.GetHeader("x-mock"))
 	assert.EqualValues(t, "true", c.GetHeader("X-Mock"))
 }
+
+func TestMutex(t *testing.T) {
+
+}

@@ -6,9 +6,9 @@ import (
 	"os"
 )
 
-
 const (
 	secretGithubAccessToken = "SECRET_GITHUB_ACCESS_TOKEN"
+	LogLevel                = "info"
 )
 
 var apiGithubAccessToken string
@@ -23,4 +23,8 @@ func init() {
 
 func GetGithubAccessToken() string {
 	return apiGithubAccessToken
+}
+
+func IsProduction() bool {
+	return os.Getenv("GO_ENVIRONMENT") == "production"
 }
