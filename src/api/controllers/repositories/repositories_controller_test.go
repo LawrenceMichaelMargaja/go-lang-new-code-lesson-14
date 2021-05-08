@@ -1,4 +1,4 @@
-package repositories
+ package repositories
 
 import (
 	"encoding/json"
@@ -91,3 +91,4 @@ func TestCreateRepoNoError(t *testing.T) {
 	assert.EqualValues(t, "", result.Name)
 	assert.EqualValues(t, "", result.Owner)
 }
+

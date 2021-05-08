@@ -16,8 +16,8 @@ type reposService struct{}
 type reposServiceInterface interface {
 	CreateRepo(clientId string, request repositories.CreateRepoRequest) (*repositories.CreateRepoResponse, errors.ApiError)
 	CreateRepos(request []repositories.CreateRepoRequest) (repositories.CreateReposResponse, errors.ApiError)
-	handleRepoResults(wg *sync.WaitGroup, input chan repositories.CreateRepositoriesResult, output chan repositories.CreateReposResponse)
-	createRepoConcurrent(input repositories.CreateRepoRequest, output chan repositories.CreateRepositoriesResult)
+	/*handleRepoResults(wg *sync.WaitGroup, input chan repositories.CreateRepositoriesResult, output chan repositories.CreateReposResponse)
+	createRepoConcurrent(input repositories.CreateRepoRequest, output chan repositories.CreateRepositoriesResult)*/
 }
 
 var (
