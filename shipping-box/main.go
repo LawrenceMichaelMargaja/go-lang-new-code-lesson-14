@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"go.uber.org/zap"
 	"sync"
 )
 
@@ -83,6 +84,20 @@ func getBestBox(availableProducts []Product, boxes []Box) (*Box, error) {
 	}
 
 	return &boxes[bestBoxVolumeSelectedIndex], nil
+}
+
+
+func init() {
+	logConfig := zap.Config{
+		OutputPaths: []string{"stdout", "/tmp/logs"},
+		Encoding:    "json",
+	}
+	var err error
+	Log, err := logConfig.Build()
+
+	if err != nil {
+		fmt.Println(Log)
+	}
 }
 
 func main() {

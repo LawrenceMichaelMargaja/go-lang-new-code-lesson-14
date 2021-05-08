@@ -1,11 +1,10 @@
 package services
 
 import (
-	"fmt"
 	"github.com/dembygenesis/go-rest-industry-standard/src/api/config"
 	"github.com/dembygenesis/go-rest-industry-standard/src/api/domain/github"
 	"github.com/dembygenesis/go-rest-industry-standard/src/api/domain/repositories"
-	"github.com/dembygenesis/go-rest-industry-standard/src/api/log"
+	"github.com/dembygenesis/go-rest-industry-standard/src/api/log/option_b"
 	"github.com/dembygenesis/go-rest-industry-standard/src/api/providers/github_provider"
 	"github.com/dembygenesis/go-rest-industry-standard/src/api/utils/errors"
 	"net/http"
@@ -41,17 +40,24 @@ func (s *reposService) CreateRepo(clientId string, input repositories.CreateRepo
 		Description: input.Description,
 		Private:     false,
 	}
-	log.Info("about to send request to external api", fmt.Sprintf("client_id:%s", clientId), "status:pending")
+	option_b.Info("about to send request to external api",
+		option_b.Field("client_id", clientId),
+		option_b.Field("status", "pending"))
 
 	// Execute api call
 	response, err := github_provider.CreateRepo(config.GetGithubAccessToken(), request)
 	if err != nil {
-		log.Info("response obtained from external api", fmt.Sprintf("client_id:%s", clientId), "status:error")
+		option_b.Info("response obtained from external api",
+			option_b.Field("client_id", clientId),
+			option_b.Field("status", "error"))
 		return nil, errors.NewApiError(err.StatusCode, err.Message)
 	}
 
 	// Return result
-	log.Info("response obtained from external api", fmt.Sprintf("client_id:%s", clientId), "status:success")
+	option_b.Info("response obtained from external api",
+		option_b.Field("client_id", clientId),
+		option_b.Field("status", "success"))
+
 	result := repositories.CreateRepoResponse{
 		Id:    response.Id,
 		Name:  response.Name,
